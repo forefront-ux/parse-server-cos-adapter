@@ -1,0 +1,35 @@
+{
+  "name": "parse-server-cos-adapter",
+  "version": "1.0.0",
+  "description": "Tecent Cloud COS(file storage) adapter for parse-server",
+  "main": "index.js",
+  "scripts": {
+    "test": "istanbul cover -x **/spec/** jasmine --captureExceptions"
+  },
+  "keywords": [
+    "parse-server",
+    "tencent",
+    "cloud",
+    "storage",
+    "cos"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/forefront-ux/parse-server-cos-adapter.git"
+  },
+  "author": "Kuma Li",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/forefront-ux/parse-server-cos-adapter/issues"
+  },
+  "homepage": "https://github.com/forefront-ux/parse-server-cos-adapter#readme",
+  "devDependencies": {
+    "codecov": "^3.2.0",
+    "istanbul": "^0.4.5",
+    "jasmine": "^3.3.1",
+    "parse-server-conformance-tests": "^1.0.0"
+  },
+  "dependencies": {
+    "cos-nodejs-sdk-v5": "^2.5.6"
+  }
+}
