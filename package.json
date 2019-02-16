@@ -1,6 +1,6 @@
 {
   "name": "@forefront/parse-server-cos-adapter",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Tecent Cloud COS(file storage) adapter for parse-server",
   "main": "index.js",
   "scripts": {
