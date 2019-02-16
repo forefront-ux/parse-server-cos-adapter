@@ -24,7 +24,10 @@ function optionsFromArguments(args) {
     options.SecretKey = args[1];
     options.Region = args[2];
     options.Bucket = args[3];
-    options.DirectAccess = args[4];
+    let otherOptions = args[4];
+    if (otherOptions) {
+      options.DirectAccess = otherOptions.DirectAccess;
+    }
   } else {
     options = Object.assign({}, SecretIdOrOptions);
   }
