@@ -1,0 +1,14 @@
+language: node_js
+branches:
+  only:
+    - master
+node_js:
+  - '10'
+# Retry install on fail to avoid failing a build on network/disk/external errors
+install:
+  - travis_retry npm install
+script:
+  - npm run test
+after_success:
+  - npm run report-coverage
+  - npm run semantic-release

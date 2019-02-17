@@ -4,7 +4,9 @@
   "description": "Tecent Cloud COS(file storage) adapter for parse-server",
   "main": "index.js",
   "scripts": {
-    "test": "istanbul cover -x **/spec/** jasmine --captureExceptions"
+    "test": "istanbul cover -x **/spec/** jasmine --captureExceptions",
+    "report-coverage": "codecov",
+    "semantic-release": "semantic-release pre && npm publish"
   },
   "keywords": [
     "parse-server",
@@ -27,7 +29,8 @@
     "codecov": "^3.2.0",
     "istanbul": "^0.4.5",
     "jasmine": "^3.3.1",
-    "parse-server-conformance-tests": "^1.0.0"
+    "parse-server-conformance-tests": "^1.0.0",
+    "semantic-release": "^15.13.3"
   },
   "dependencies": {
     "cos-nodejs-sdk-v5": "^2.5.6"
