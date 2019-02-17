@@ -6,7 +6,7 @@
   "scripts": {
     "test": "istanbul cover -x **/spec/** jasmine --captureExceptions",
     "report-coverage": "codecov",
-    "semantic-release": "semantic-release pre && npm publish"
+    "semantic-release": "semantic-release"
   },
   "keywords": [
     "parse-server",
