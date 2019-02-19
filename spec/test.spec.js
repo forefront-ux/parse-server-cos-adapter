@@ -4,10 +4,9 @@ let filesAdapterTests = require('parse-server-conformance-tests').files;
 let COSAdapter = require('../index.js');
 
 describe('COSAdapter tests', () => {
-
   it('should throw when not initialized properly', () => {
     expect(() => {
-      return new COSAdapter();
+      return new COSAdapter('');
     }).toThrow('COSAdapter requires an SecretId');
 
     expect(() => {
@@ -52,7 +51,12 @@ describe('COSAdapter tests', () => {
     && process.env.COS_REGION
   ) {
     // Should be initialized from the env
-    let cosAdapter = new COSAdapter();
+    let cosAdapter = new COSAdapter({
+        SecretId: 'SecretId',
+        SecretKey: 'SecretKey',
+        Region: 'Region',
+        Bucket: 'Bucket'
+    });
     filesAdapterTests.testAdapter("COSAdapter", cosAdapter);
   }
 
