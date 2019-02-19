@@ -2,6 +2,7 @@
 // COSAdapter
 // Store Parse Files in Tencent Cloud COS Service: https://cloud.tencent.com/product/cos
 const storage = require('cos-nodejs-sdk-v5');
+const fs = require('fs');
 
 function requiredOrFromEnvironment(options, key, env) {
   options[key] = options[key] || process.env[env];
@@ -64,7 +65,7 @@ COSAdapter.prototype.createFile = function(filename, data, contentType) {
       Region : this._region,
       Bucket : this._bucket,
       Key : filename,
-      Body: fs.createReadStream(data),
+      Body: fs.existsSync(data) ? fs.createReadStream(data) : data,
       contentType: contentType,
       onProgress: function (progressData) {
         return progressData;
@@ -110,7 +111,7 @@ COSAdapter.prototype.getFileData = function(filename) {
       if(err) {
         return reject(err);
       } else {
-        return resolve(result);
+        return resolve(result.Body);
       }
     });
   });
