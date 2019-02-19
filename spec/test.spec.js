@@ -51,12 +51,7 @@ describe('COSAdapter tests', () => {
     && process.env.COS_REGION
   ) {
     // Should be initialized from the env
-    let cosAdapter = new COSAdapter({
-        SecretId: 'SecretId',
-        SecretKey: 'SecretKey',
-        Region: 'Region',
-        Bucket: 'Bucket'
-    });
+    let cosAdapter = new COSAdapter();
     filesAdapterTests.testAdapter("COSAdapter", cosAdapter);
   }
 
