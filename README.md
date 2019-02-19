@@ -66,16 +66,17 @@ And update your config / options
 var COSAdapter = require('@forefront/parse-server-cos-adapter');
 
 var cosAdapter = new COSAdapter('SecretId',
-								'SecretKey',
-                                'Region',
-								'Bucket' , {
-									directAccess: false
-								});
+  'SecretKey',
+  'Region',
+  'Bucket' , {
+    directAccess: false
+  }
+);
 
 var api = new ParseServer({
-	appId: 'my_app',
-	masterKey: 'master_key',
-	filesAdapter: cosAdapter
+  appId: 'my_app',
+  masterKey: 'master_key',
+  filesAdapter: cosAdapter
 })
 ```
 
@@ -85,18 +86,18 @@ or with an options hash
 var COSAdapter = require('@forefront/parse-server-cos-adapter');
 
 var cosOptions = {
-	"SecretId": "SecretId",
-    "SecretKey": "SecretKey",
-    "Region": "my_region",
-    "Bucket": "my_bucket",
-    "DirectAccess": false
+  "SecretId": "SecretId",
+  "SecretKey": "SecretKey",
+  "Region": "my_region",
+  "Bucket": "my_bucket",
+  "DirectAccess": false
 }
 
 var cosAdapter = new COSAdapter(cosOptions);
 
 var api = new ParseServer({
-	appId: 'my_app',
-	masterKey: 'master_key',
-	filesAdapter: cosAdapter
+  appId: 'my_app',
+  masterKey: 'master_key',
+  filesAdapter: cosAdapter
 })
 ```
