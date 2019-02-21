@@ -36,16 +36,16 @@ describe('COSAdapter tests', () => {
       const cosAdapterSigned = new COSAdapter(param);
       const filename = 'test.jpg';
       let fileLocation = cosAdapterSigned.getFileLocation({}, filename);
-      const regSignedUrl = new RegExp(`^https://${process.env.COS_BUCKET}.cos.${process.env.COS_REGION}.myqcloud.com/${filename}\?.+$`);
+      const regSignedUrl = new RegExp(`^https://${Bucket}.cos.${Region}.myqcloud.com/${filename}\?.+$`);
       expect(fileLocation).toMatch(regSignedUrl);
       // get unsigned url
-      delete param.Signed;
+      param.Signed = false;
       const cosAdapterNotSigned = new COSAdapter(param);
       fileLocation = cosAdapterNotSigned.getFileLocation({}, filename);
-      const strUnsignedUrl = `https://${process.env.COS_BUCKET}.cos.${process.env.COS_REGION}.myqcloud.com/${filename}`;
+      const strUnsignedUrl = `https://${Bucket}.cos.${region}.myqcloud.com/${filename}`;
       expect(fileLocation).toBe(strUnsignedUrl);
       // get file path through parse-server
-      delete param.DirectAccess;
+      param.DirectAccess = false;
       const cosAdapterNotDirectAccess = new COSAdapter(param);
       const mount = '/assets';
       const appId = 'testApp';
