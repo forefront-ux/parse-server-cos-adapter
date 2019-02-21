@@ -25,7 +25,8 @@ function optionsFromArguments(args) {
     options.SecretKey = args[1];
     options.Region = args[2];
     options.Bucket = args[3];
-    let otherOptions = args[4];
+    options.Signed = args[4];
+    let otherOptions = args[5];
     if (otherOptions) {
       options.DirectAccess = otherOptions.DirectAccess;
     }
@@ -36,6 +37,7 @@ function optionsFromArguments(args) {
   options = requiredOrFromEnvironment(options, 'SecretKey', 'COS_SECRET_KEY');
   options = requiredOrFromEnvironment(options, 'Region', 'COS_REGION');
   options = requiredOrFromEnvironment(options, 'Bucket', 'COS_BUCKET');
+  options = fromEnvironmentOrDefault(options, 'Signed', 'COS_SIGNED', undefined);
   options = fromEnvironmentOrDefault(options, 'DirectAccess', 'COS_DIRECT_ACCESS', undefined);
   return options;
 }
@@ -53,6 +55,7 @@ function COSAdapter() {
   this._bucket = options.Bucket;
   this._region = options.Region;
   this._directAccess = options.DirectAccess;
+  this._signed = options.Signed;
   this._cosClient = new storage({
     SecretId: options.SecretId,
     SecretKey: options.SecretKey
@@ -122,7 +125,13 @@ COSAdapter.prototype.getFileData = function(filename) {
 // otherwise we serve the file through parse-server.
 COSAdapter.prototype.getFileLocation = function(config, filename) {
   if (this._directAccess) {
-    return `https://${this._bucket}.cos.${this._region}.myqcloud.com/${filename}`;
+    const params = {
+      Region : this._region,
+      Bucket : this._bucket,
+      Key : filename,
+      Sign: this._signed
+    };
+    return this._cosClient.getObjectUrl(params);
   }
   return (config.mount + '/files/' + config.applicationId + '/' + filename);
 }
