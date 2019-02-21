@@ -16,28 +16,30 @@ describe('COSAdapter tests', () => {
     let cosAdapter = new COSAdapter();
     filesAdapterTests.testAdapter("COSAdapter", cosAdapter);
 
-    // test getFileLocation API
-    // get signed url
-    const filename = 'test.jpg';
-    let fileLocation = cosAdapter.getFileLocation({}, filename);
-    const regSignedUrl = new RegExp(`^https://${process.env.COS_BUCKET}.cos.${process.env.COS_REGION}.myqcloud.com/${filename}\?.+$`);
-    expect(fileLocation).toMatch(regSignedUrl);
-    // get unsigned url
-    delete process.env.COS_SIGNED;
-    let cosAdapterNotSigned = new COSAdapter();
-    fileLocation = cosAdapterNotSigned.getFileLocation({}, filename);
-    const strUnsignedUrl = `https://${process.env.COS_BUCKET}.cos.${process.env.COS_REGION}.myqcloud.com/${filename}`;
-    expect(fileLocation).toBe(strUnsignedUrl);
-    // get file path through parse-server
-    delete process.env.COS_DIRECT_ACCESS;
-    let cosAdapterNotDirectAccess = new COSAdapter();
-    const mount = '/assets';
-    const appId = 'testApp';
-    fileLocation = cosAdapterNotDirectAccess.getFileLocation({
-      mount: mount,
-      applicationId: appId
-    }, filename);
-    expect(fileLocation).toBe(`${mount}/files/${appId}/${filename}`);
+    it('should not throw error of getFileLocation method', () => {
+      // test getFileLocation API
+      // get signed url
+      const filename = 'test.jpg';
+      let fileLocation = cosAdapter.getFileLocation({}, filename);
+      const regSignedUrl = new RegExp(`^https://${process.env.COS_BUCKET}.cos.${process.env.COS_REGION}.myqcloud.com/${filename}\?.+$`);
+      expect(fileLocation).toMatch(regSignedUrl);
+      // get unsigned url
+      delete process.env.COS_SIGNED;
+      let cosAdapterNotSigned = new COSAdapter();
+      fileLocation = cosAdapterNotSigned.getFileLocation({}, filename);
+      const strUnsignedUrl = `https://${process.env.COS_BUCKET}.cos.${process.env.COS_REGION}.myqcloud.com/${filename}`;
+      expect(fileLocation).toBe(strUnsignedUrl);
+      // get file path through parse-server
+      delete process.env.COS_DIRECT_ACCESS;
+      let cosAdapterNotDirectAccess = new COSAdapter();
+      const mount = '/assets';
+      const appId = 'testApp';
+      fileLocation = cosAdapterNotDirectAccess.getFileLocation({
+        mount: mount,
+        applicationId: appId
+      }, filename);
+      expect(fileLocation).toBe(`${mount}/files/${appId}/${filename}`);
+    });
   }
 
   delete process.env.COS_SECRET_ID;
