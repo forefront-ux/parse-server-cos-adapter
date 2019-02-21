@@ -13,25 +13,24 @@ describe('COSAdapter tests', () => {
     && process.env.COS_SIGNED
   ) {
     // Should be initialized from the env
-    let cosAdapter = new COSAdapter();
+    const SecretId = process.env.COS_SECRET_ID;
+    const SecretKey = process.env.COS_SECRET_KEY;
+    const Bucket = process.env.COS_BUCKET;
+    const Region = process.env.COS_REGION;
+    const DirectAccess = process.env.COS_DIRECT_ACCESS;
+    const Signed = process.env.COS_SIGNED;
+    const param = {
+      SecretId,
+      SecretKey,
+      Bucket,
+      Region,
+      DirectAccess,
+      Signed
+    };
+    const cosAdapter = new COSAdapter(param);
     filesAdapterTests.testAdapter("COSAdapter", cosAdapter);
 
     it('should not throw error of getFileLocation method', () => {
-      const SecretId = process.env.COS_SECRET_ID;
-      const SecretKey = process.env.COS_SECRET_KEY;
-      const Bucket = process.env.COS_BUCKET;
-      const Region = process.env.COS_REGION;
-      const DirectAccess = process.env.COS_DIRECT_ACCESS;
-      const Signed = process.env.COS_SIGNED;
-      const param = {
-        SecretId,
-        SecretKey,
-        Bucket,
-        Region,
-        DirectAccess,
-        Signed
-      };
-
       // test getFileLocation API
       // get signed url
       const cosAdapterSigned = new COSAdapter(param);
