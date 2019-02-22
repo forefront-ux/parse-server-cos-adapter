@@ -9,16 +9,14 @@ describe('COSAdapter tests', () => {
     && process.env.COS_SECRET_KEY
     && process.env.COS_BUCKET
     && process.env.COS_REGION
-    && process.env.COS_DIRECT_ACCESS
-    && process.env.COS_SIGNED
   ) {
     // Should be initialized from the env
     const SecretId = process.env.COS_SECRET_ID;
     const SecretKey = process.env.COS_SECRET_KEY;
     const Bucket = process.env.COS_BUCKET;
     const Region = process.env.COS_REGION;
-    const DirectAccess = process.env.COS_DIRECT_ACCESS;
-    const Signed = process.env.COS_SIGNED;
+    const DirectAccess = true;
+    const Signed = true;
     const param = {
       SecretId,
       SecretKey,
@@ -61,8 +59,6 @@ describe('COSAdapter tests', () => {
   delete process.env.COS_SECRET_KEY;
   delete process.env.COS_BUCKET;
   delete process.env.COS_REGION;
-  delete process.env.COS_SIGNED;
-  delete process.env.COS_DIRECT_ACCESS;
 
   it('should throw when not initialized properly', () => {
     expect(() => {
