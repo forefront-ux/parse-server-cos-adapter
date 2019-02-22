@@ -40,8 +40,8 @@ describe('COSAdapter tests', () => {
 
     it('should not throw error of getting unsigned url', () => {
       // get unsigned url
-      param.Signed = false;
-      const cosAdapterNotSigned = new COSAdapter(param);
+      const _param = Object.assign({}, param, { Signed: false });
+      const cosAdapterNotSigned = new COSAdapter(_param);
       const fileLocation = cosAdapterNotSigned.getFileLocation({}, filename);
       const strUnsignedUrl = `https://${Bucket}.cos.${Region}.myqcloud.com/${filename}`;
       expect(fileLocation).toBe(strUnsignedUrl);
@@ -49,8 +49,8 @@ describe('COSAdapter tests', () => {
 
     it('should not throw error of getting file path through parse-server', () => {
       // get file path through parse-server
-      param.DirectAccess = false;
-      const cosAdapterNotDirectAccess = new COSAdapter(param);
+      const _param = Object.assign({}, param, { DirectAccess: false });
+      const cosAdapterNotDirectAccess = new COSAdapter(_param);
       const mount = '/assets';
       const appId = 'testApp';
       const fileLocation = cosAdapterNotDirectAccess.getFileLocation({
