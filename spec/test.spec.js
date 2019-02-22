@@ -27,12 +27,12 @@ describe('COSAdapter tests', () => {
     };
     const cosAdapter = new COSAdapter(param);
     filesAdapterTests.testAdapter("COSAdapter", cosAdapter);
+    const filename = 'test.jpg';
 
     it('should not throw error of getting signed url', () => {
       // test getFileLocation API
       // get signed url
       const cosAdapterSigned = new COSAdapter(param);
-      const filename = 'test.jpg';
       const fileLocation = cosAdapterSigned.getFileLocation({}, filename);
       const regSignedUrl = new RegExp(`^https://${Bucket}.cos.${Region}.myqcloud.com/${filename}\?.+$`);
       expect(fileLocation).toMatch(regSignedUrl);
