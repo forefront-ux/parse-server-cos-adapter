@@ -42,7 +42,7 @@ describe('COSAdapter tests', () => {
       param.Signed = false;
       const cosAdapterNotSigned = new COSAdapter(param);
       fileLocation = cosAdapterNotSigned.getFileLocation({}, filename);
-      const strUnsignedUrl = `https://${Bucket}.cos.${region}.myqcloud.com/${filename}`;
+      const strUnsignedUrl = `https://${Bucket}.cos.${Region}.myqcloud.com/${filename}`;
       expect(fileLocation).toBe(strUnsignedUrl);
       // get file path through parse-server
       param.DirectAccess = false;
