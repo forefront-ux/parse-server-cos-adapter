@@ -48,6 +48,7 @@ supported options
 *SecretKey / 'COS_SECRET_KEY'
 *Bucket / 'COS_BUCKET'
 *Region / 'COS_REGION'
+*Signed / 'COS_SIGNED'
 *DirectAccess / 'COS_DIRECT_ACCESS'
 */
 function COSAdapter() {

@@ -31,6 +31,7 @@ parse-server adapter for Tecent COS
       "SecretKey": "SecretKey",
       "Region": "my_region",
       "Bucket": "my_bucket",
+      "Signed": false // default value
       // optional:
       "directAccess": false // default value
     }
@@ -47,6 +48,8 @@ COS_SECRET_ID=SecretId
 COS_SECRET_KEY=SecretKey
 COS_REGION=regionName
 COS_BUCKET=bucketName
+COS_SIGNED=false
+COS_DIRECT_ACCESS=false
 ```
 
 And update your config / options
@@ -65,10 +68,13 @@ And update your config / options
 ```
 var COSAdapter = require('@forefront/parse-server-cos-adapter');
 
-var cosAdapter = new COSAdapter('SecretId',
+var cosAdapter = new COSAdapter(
+  'SecretId',
   'SecretKey',
   'Region',
-  'Bucket' , {
+  'Bucket',
+  false,
+  {
     directAccess: false
   }
 );
@@ -90,6 +96,7 @@ var cosOptions = {
   "SecretKey": "SecretKey",
   "Region": "my_region",
   "Bucket": "my_bucket",
+  "Signed": false,
   "DirectAccess": false
 }
 
