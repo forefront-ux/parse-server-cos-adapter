@@ -37,7 +37,7 @@ function optionsFromArguments(args) {
   options = requiredOrFromEnvironment(options, 'SecretKey', 'COS_SECRET_KEY');
   options = requiredOrFromEnvironment(options, 'Region', 'COS_REGION');
   options = requiredOrFromEnvironment(options, 'Bucket', 'COS_BUCKET');
-  options = fromEnvironmentOrDefault(options, 'Signed', 'COS_SIGNED', undefined);
+  options = fromEnvironmentOrDefault(options, 'Signed', 'COS_SIGNED', false);
   options = fromEnvironmentOrDefault(options, 'DirectAccess', 'COS_DIRECT_ACCESS', undefined);
   return options;
 }

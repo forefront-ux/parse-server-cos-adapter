@@ -17,6 +17,7 @@ describe('COSAdapter tests', () => {
     const Region = process.env.COS_REGION;
     const DirectAccess = true;
     const Signed = true;
+    const filename = 'test.jpg';
     const param = {
       SecretId,
       SecretKey,
@@ -27,7 +28,6 @@ describe('COSAdapter tests', () => {
     };
     const cosAdapter = new COSAdapter(param);
     filesAdapterTests.testAdapter("COSAdapter", cosAdapter);
-    const filename = 'test.jpg';
 
     it('should not throw error of getting signed url', () => {
       // test getFileLocation API
