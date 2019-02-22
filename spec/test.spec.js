@@ -28,26 +28,32 @@ describe('COSAdapter tests', () => {
     const cosAdapter = new COSAdapter(param);
     filesAdapterTests.testAdapter("COSAdapter", cosAdapter);
 
-    it('should not throw error of getFileLocation method', () => {
+    it('should not throw error of getting signed url', () => {
       // test getFileLocation API
       // get signed url
       const cosAdapterSigned = new COSAdapter(param);
       const filename = 'test.jpg';
-      let fileLocation = cosAdapterSigned.getFileLocation({}, filename);
+      const fileLocation = cosAdapterSigned.getFileLocation({}, filename);
       const regSignedUrl = new RegExp(`^https://${Bucket}.cos.${Region}.myqcloud.com/${filename}\?.+$`);
       expect(fileLocation).toMatch(regSignedUrl);
+    });
+
+    it('should not throw error of getting unsigned url', () => {
       // get unsigned url
       param.Signed = false;
       const cosAdapterNotSigned = new COSAdapter(param);
-      fileLocation = cosAdapterNotSigned.getFileLocation({}, filename);
+      const fileLocation = cosAdapterNotSigned.getFileLocation({}, filename);
       const strUnsignedUrl = `https://${Bucket}.cos.${Region}.myqcloud.com/${filename}`;
       expect(fileLocation).toBe(strUnsignedUrl);
+    });
+
+    it('should not throw error of getting file path through parse-server', () => {
       // get file path through parse-server
       param.DirectAccess = false;
       const cosAdapterNotDirectAccess = new COSAdapter(param);
       const mount = '/assets';
       const appId = 'testApp';
-      fileLocation = cosAdapterNotDirectAccess.getFileLocation({
+      const fileLocation = cosAdapterNotDirectAccess.getFileLocation({
         mount: mount,
         applicationId: appId
       }, filename);
