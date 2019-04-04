@@ -28,7 +28,7 @@
   "devDependencies": {
     "codecov": "^3.2.0",
     "istanbul": "^0.4.5",
-    "jasmine": "^3.3.1",
+    "jasmine": "^3.4.0",
     "parse-server-conformance-tests": "^1.0.0",
     "semantic-release": "^15.13.3"
   },
