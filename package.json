@@ -30,7 +30,7 @@
     "istanbul": "^0.4.5",
     "jasmine": "^3.3.1",
     "parse-server-conformance-tests": "^1.0.0",
-    "semantic-release": "^15.13.3"
+    "semantic-release": "^15.13.17"
   },
   "dependencies": {
     "cos-nodejs-sdk-v5": "^2.5.6"
